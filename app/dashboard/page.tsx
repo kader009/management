@@ -87,25 +87,29 @@ export default function DashboardPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-100">
+          Dashboard
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">
           Welcome to Hospital Management System
         </p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow"
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-xl transition-shadow"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm font-medium mb-1">
+                <p className="text-gray-600 dark:text-gray-400 text-sm font-medium mb-1">
                   {stat.title}
                 </p>
-                <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
+                <p className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+                  {stat.value}
+                </p>
               </div>
               <div className={`${stat.bgColor} p-3 rounded-lg text-white`}>
                 {stat.icon}
@@ -117,7 +121,7 @@ export default function DashboardPage() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-md p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Quick Actions
           </h2>

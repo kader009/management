@@ -94,16 +94,16 @@ export default function DashboardLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
       {/* Topbar */}
-      <nav className="bg-white shadow-md fixed w-full top-0 z-50">
+      <nav className="bg-white dark:bg-gray-800 shadow-md fixed w-full top-0 z-50">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="lg:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none"
+                className="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
               >
                 <svg
                   className="w-6 h-6"
@@ -136,24 +136,26 @@ export default function DashboardLayout({
                     />
                   </svg>
                 </div>
-                <span className="ml-3 text-xl font-bold text-gray-800">
+                <span className="ml-3 text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-100 hidden xs:block">
                   Hospital Management
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="hidden sm:flex items-center space-x-2">
-                <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
-                  <span className="text-indigo-600 font-semibold text-sm">
+                <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
+                  <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm">
                     {username.charAt(0).toUpperCase()}
                   </span>
                 </div>
-                <span className="text-gray-700 font-medium">{username}</span>
+                <span className="text-gray-700 dark:text-gray-300 font-medium">
+                  {username}
+                </span>
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-1 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
+                className="flex items-center space-x-1 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition"
               >
                 <svg
                   className="w-4 h-4"
@@ -168,23 +170,23 @@ export default function DashboardLayout({
                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                   />
                 </svg>
-                <span>Logout</span>
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="flex pt-16 min-h-screen">
+      <div className="flex pt-16 min-h-screen bg-gray-100 dark:bg-gray-900">
         {/* Sidebar */}
         <aside
-          className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out pt-16 lg:pt-0 h-screen ${
+          className={`fixed lg:static top-16 lg:top-0 bottom-0 left-0 z-40 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out overflow-y-auto ${
             isSidebarOpen
               ? 'translate-x-0'
               : '-translate-x-full lg:translate-x-0'
           }`}
         >
-          <nav className="mt-8 px-4 space-y-2">
+          <nav className="py-8 px-4 space-y-2">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -194,8 +196,8 @@ export default function DashboardLayout({
                   onClick={() => setIsSidebarOpen(false)}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition ${
                     isActive
-                      ? 'bg-indigo-50 text-indigo-600 font-semibold'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-indigo-50 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 font-semibold'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
                   {item.icon}
@@ -209,13 +211,15 @@ export default function DashboardLayout({
         {/* Overlay for mobile */}
         {isSidebarOpen && (
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden mt-16"
+            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
 
         {/* Main content */}
-        <main className="flex-1 p-6 lg:p-8">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full lg:w-auto overflow-x-hidden">
+          {children}
+        </main>
       </div>
     </div>
   );
